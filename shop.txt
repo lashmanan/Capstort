@@ -1,0 +1,97 @@
+--ADMIN TABLE---
+
+Create table Admin(
+Aid int not null primary key,
+Aname varchar(20) not null,
+Aemail varchar(20) not null,
+Password varchar(20) not null,
+);
+
+
+--REGISTER Table--
+CREATE TABLE register(
+         Rid int not null primary key,
+        first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	dob DATE NOT NULL, 
+        paasword VARCHAR(50) NOT NULL,
+	gender VARCHAR(1) NOT NULL,
+	primary_address VARCHAR(50),
+	primary_phone INT,
+	primary_email VARCHAR(50),
+);
+--user-id--
+CREATE TABLE user(
+uid int  not null primary key,
+Aid int FOREIGN KEY(Aid) REFERENCES product(Aid),
+Rid int  FOREIGN KEY(id) REFERENCES product(Aid)
+);
+
+
+---product Table--
+CREATE TABLE product(
+      p_id int(11) PK
+      p_name varchar(45) 
+       product_price int(11) 
+)
+    
+---product-catalog--
+CREATE TABLE product_catalog (
+PCid int not null pk,
+product_id INT FOREIGN KEY(p_id) REFERENCES product(p_id),
+vendor_id INT NOT NULL,
+manufacturer_id VARCHAR(10) NOT NULL,
+color_id INT,
+size_id INT,
+unit_id INT
+);
+
+CREATE TABLE cart (
+cart_id INT UNIQUE,
+p_id INT FOREIGN KEY(p_id) REFERENCES product(p_id),
+quantity INT NOT NULL,
+);
+
+---order deatails--
+CREATE TABLE order_details (
+user_id INT NOT NULL FOREIGN KEY(user_id) REFERENCES user(user_id),
+p_id INT FOREIGN KEY(p_id) REFERENCES product(p_id);
+Coupon_id INT FOREIGN KEY(coupon_id) REFERENCES coupon(coupon_id)
+cart_id INT FOREIGN KEY(cart_id) REFERENCES cart(cart_id)
+order_date DATE NOT NULL,
+ship_date DATE,
+ship_method VARCHAR(30) NOT NULL,
+fullfillment_date DATE,
+cancellation_date DATE,
+return_date DATE,
+);
+
+
+CREATE TABLE Payment(
+user_id INT NOT NULL FOREIGN KEY(user_id) REFERENCES user(user_id),
+PCardName varchar(20) not null;
+Pnum int not null primary key,
+Pcvv int not null
+)
+
+--coupon table--
+Create table Coupons(
+Coupon_id INT primary key,
+Coupon_name varchar(30) not null
+Coupon_dis double not null
+
+);
+
+Create table Event(
+
+Eid int not null primary key;
+Coupon_id INT FOREIGN KEY(coupon_id) REFERENCES coupon(coupon_id),
+ESdate date not null,
+EEdate date not null
+);
+
+
+
+
+
+
