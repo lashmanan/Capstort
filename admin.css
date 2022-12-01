@@ -1,0 +1,23 @@
+*{
+    padding:0%;
+    margin:5%;
+}
+
+body{
+    background-color:black;
+}
+
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.card-body,.card-title,.card-text{
+    background-color: whitesmoke;
+}
+
